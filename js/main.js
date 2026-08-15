@@ -14,8 +14,8 @@ const CONTACTS = {
   telegram: 'ZHARA869',
   // Чат-бот МАКС: ссылка вида https://max.ru/join/... (ваш бот в мессенджере MAX)
   max: '',
-  // E-mail (домен septik-profi.ru свободен — ящик заведёте после регистрации домена):
-  email: 'info@septik-profi.ru'
+  // E-mail (домен septikprofi.ru зарегистрирован — заведите почтовый ящик):
+  email: 'info@septikprofi.ru'
 };
 
 /* ====== БАЗА МОДЕЛЕЙ ДЛЯ ПОДБОРА ======
