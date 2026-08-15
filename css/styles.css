@@ -104,6 +104,8 @@ a:hover { color: var(--green-dark); }
 
 .logo { display: inline-flex; align-items: center; gap: 12px; }
 .logo__mark { color: var(--green); display: inline-flex; }
+.logo__mark svg { display: block; }
+.logo--footer .logo__mark svg { width: 40px; height: 40px; }
 .logo__text { display: flex; flex-direction: column; line-height: 1.15; }
 .logo__text strong { font-size: 19px; color: var(--navy); letter-spacing: .5px; font-weight: 800; }
 .logo__text small { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: .3px; }
