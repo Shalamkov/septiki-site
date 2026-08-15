@@ -241,30 +241,29 @@ window.addEventListener('scroll', () => {
   header.style.boxShadow = window.scrollY > 10 ? '0 6px 20px rgba(16,38,59,.08)' : 'none';
 }, { passive: true });
 
-/* ====== ПЛАВАЮЩИЕ КНОПКИ TELEGRAM / МАКС ======
-   Появляются автоматически, как только заполнены CONTACTS.telegram / CONTACTS.max */
-function addFloat(channel, href, label, inner) {
-  const el = document.createElement('a');
-  el.className = 'wa-float wa-float--' + channel;
-  el.href = href;
-  el.target = '_blank';
-  el.rel = 'noopener';
-  el.setAttribute('aria-label', label);
-  el.innerHTML = inner;
-  document.body.appendChild(el);
+/* ====== ПЛАШКА ЧАТ-БОТА МАКС ======
+   Кнопка всегда на месте; открывает чат, как только указана ссылка в CONTACTS.max */
+const floatMax = document.getElementById('float-max');
+if (floatMax) {
+  floatMax.addEventListener('click', e => {
+    if (CONTACTS.max) {
+      window.open(CONTACTS.max, '_blank');
+      return;
+    }
+    e.preventDefault();
+    showToast('Ссылка на чат-бот МАКС появится здесь, как только будет готова');
+  });
 }
-
-if (CONTACTS.telegram) {
-  addFloat('telegram', 'https://t.me/' + CONTACTS.telegram + '?text=' + encodeURIComponent('Здравствуйте! Интересует септик'),
-    'Написать в Telegram',
-    '<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="#fff" d="M26.5 5.7 4.9 14.4c-1.5.6-1.5 2.2-.3 2.7l5.5 1.7 2.1 6.6c.3 1 1.2 1.2 1.9.6l3-2.7 5.6 4.1c.9.6 1.8.3 2.1-.8l4.2-18.8c.3-1.3-.7-2.3-2.5-1.9zM11 19.1l.9 6.3 1.6-4.9 9.4-7.2c.4-.3 0-.6-.6-.3l-11.3 6.1z"/></svg>');
-}
-
-if (CONTACTS.max) {
-  addFloat('max', CONTACTS.max,
-    'Чат-бот МАКС',
-    '<span class="wa-float__letter">M</span>');
-}
+document.querySelectorAll('[data-max-todo]').forEach(el => {
+  el.addEventListener('click', e => {
+    if (CONTACTS.max) {
+      window.open(CONTACTS.max, '_blank');
+      return;
+    }
+    e.preventDefault();
+    showToast('Ссылка на чат-бот МАКС появится здесь, как только будет готова');
+  });
+});
 
 /* ====== HERO-СЛАЙДЕР ====== */
 (function () {

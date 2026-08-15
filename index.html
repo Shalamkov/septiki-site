@@ -989,8 +989,8 @@
         <li><span>Мессенджеры:</span>
           <a class="msg-link" href="https://wa.me/79107850007?text=Здравствуйте!%20Интересует%20септик" target="_blank" rel="noopener">WhatsApp</a>
           <a class="msg-link" href="https://t.me/ZHARA869" target="_blank" rel="noopener">Telegram @ZHARA869</a>
-          <!-- TODO: замените placeholder на ссылку вашего чат-бота МАКС (max.ru/join/...) -->
-          <a class="msg-link msg-link--todo" href="#contacts" title="Укажите ссылку на чат-бот МАКС">Чат-бот МАКС</a>
+          <!-- TODO: замените ссылку на чат-бота МАКС (max.ru/join/...) — пока открывает подсказку -->
+          <a class="msg-link" href="#" data-max-todo title="Чат-бот МАКС">Чат-бот МАКС</a>
         </li>
         <li><span>Режим работы:</span> ежедневно 8:00–20:00</li>
         <li><span>Регион работы:</span> Смоленская, Брянская и Калужская области</li>
@@ -1170,9 +1170,15 @@
 <!-- Уведомление об отправке -->
 <div class="toast" id="toast" hidden>✓ Заявка отправлена! Мы свяжемся с вами в ближайшее время.</div>
 
-<!-- Плавающая кнопка WhatsApp -->
-<a class="wa-float" id="wa-float" href="https://wa.me/79107850007?text=Здравствуйте!%20Интересует%20септик" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+<!-- Плавающие кнопки мессенджеров: WhatsApp · Telegram · чат-бот МАКС -->
+<a class="wa-float" id="wa-float" href="https://wa.me/79107850007?text=Здравствуйте!%20Интересует%20септик" target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="Написать в WhatsApp">
   <svg viewBox="0 0 32 32" width="34" height="34" aria-hidden="true"><path fill="#fff" d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.2.5 2.5.8 3.8.8 6.6 0 12-5.4 12-12S22.6 3 16 3zm6.9 17.2c-.3.8-1.7 1.6-2.4 1.6-.6.1-1.4.1-2.2-.1-.5-.2-1.1-.4-1.9-.8-3.2-1.4-5.3-4.7-5.5-4.9-.1-.2-1.3-1.7-1.3-3.3s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5l1 2.4c.1.2.1.4 0 .6-.1.2-.1.4-.3.6l-.4.5c-.2.2-.4.4-.2.7.2.3 1 1.7 2.2 2.7 1.5 1.4 2.8 1.8 3.2 2 .4.2.6.2.8-.1.2-.3.9-1.1 1.2-1.4.2-.3.5-.3.8-.2l2.4 1.1c.3.1.5.2.6.4.1.1.1.7-.3 1.6z"/></svg>
+</a>
+<a class="wa-float wa-float--telegram" id="float-telegram" href="https://t.me/ZHARA869?text=Здравствуйте!%20Интересует%20септик" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Написать в Telegram">
+  <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="#fff" d="M26.5 5.7 4.9 14.4c-1.5.6-1.5 2.2-.3 2.7l5.5 1.7 2.1 6.6c.3 1 1.2 1.2 1.9.6l3-2.7 5.6 4.1c.9.6 1.8.3 2.1-.8l4.2-18.8c.3-1.3-.7-2.3-2.5-1.9zM11 19.1l.9 6.3 1.6-4.9 9.4-7.2c.4-.3 0-.6-.6-.3l-11.3 6.1z"/></svg>
+</a>
+<a class="wa-float wa-float--max" id="float-max" href="#" role="button" aria-label="Чат-бот МАКС" title="Чат-бот МАКС">
+  <span class="wa-float__letter">M</span>
 </a>
 
 <script src="js/animations.js"></script>
