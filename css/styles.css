@@ -91,6 +91,18 @@ a:hover { color: var(--green-dark); }
 .topbar__worktime { color: #9FB2C3; }
 .topbar__phone { color: #fff; font-weight: 700; }
 .topbar__phone:hover { color: var(--orange); }
+.topbar__phone--city {
+  font-size: 15.5px; font-weight: 800; letter-spacing: .6px;
+  white-space: nowrap; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.topbar__phone--city::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 0 3px rgba(52, 199, 123, .22);
+  flex-shrink: 0;
+}
+.topbar__phone--city:hover { color: var(--orange); }
+.topbar__phone--city:hover::before { background: var(--orange); box-shadow: 0 0 0 3px rgba(240, 124, 42, .25); }
 .topbar__call { border-color: rgba(255,255,255,.5); color: #fff; background: transparent; }
 
 /* ---------- Шапка ---------- */
