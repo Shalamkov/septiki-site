@@ -329,6 +329,29 @@ a:hover { color: var(--green-dark); }
 .install__note { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
 .install__includes .btn { display: block; margin: 0 auto; }
 
+/* ---------- Маскот в блоке монтажа ---------- */
+.install__mascot { display: flex; align-items: center; justify-content: center; gap: 28px; margin: 6px 0 46px; }
+.install__mascot-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 14px;
+  box-shadow: var(--shadow); flex-shrink: 0;
+}
+.install__mascot-img { width: 200px; height: auto; display: block; border-radius: 14px; }
+.install__mascot-bubble {
+  position: relative; max-width: 430px; background: #fff; border: 1px solid var(--line);
+  border-radius: 18px; padding: 22px 26px; font-size: 17px; font-weight: 700; color: var(--navy);
+  box-shadow: var(--shadow);
+}
+.install__mascot-bubble::before {
+  content: ''; position: absolute; left: -13px; top: 50%; transform: translateY(-50%);
+  border: 8px solid transparent; border-right-color: #fff;
+}
+@media (max-width: 640px) {
+  .install__mascot { flex-direction: column; gap: 16px; margin-bottom: 36px; }
+  .install__mascot-img { width: 150px; }
+  .install__mascot-bubble { font-size: 15.5px; text-align: center; }
+  .install__mascot-bubble::before { left: 50%; top: -13px; transform: translateX(-50%) rotate(90deg); }
+}
+
 /* ---------- Рассрочка ---------- */
 .finance { background: linear-gradient(135deg, var(--orange), #FF9A4D); padding: 60px 0; color: #fff; }
 .finance__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
