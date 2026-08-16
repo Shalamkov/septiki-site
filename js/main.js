@@ -336,3 +336,78 @@ document.querySelectorAll('[data-max-todo]').forEach(el => {
     }
   });
 })();
+
+/* ====== РУЛЕТКА БОНУСОВ ====== */
+(function () {
+  const modal = document.getElementById('wheel-modal');
+  if (!modal) return;
+  const wheel = document.getElementById('wheel');
+  const spinBtn = document.getElementById('wheel-spin');
+  const resultBox = document.getElementById('wheel-result');
+  const resultTitle = document.getElementById('wheel-result-title');
+  const takeBtn = document.getElementById('wheel-take');
+  const PRIZES = [
+    { label: 'Установка в подарок', weight: 5 },
+    { label: 'Скидка 10% на септик', weight: 20 },
+    { label: 'Скидка 5% на септик', weight: 18 },
+    { label: 'Скидка 15% на септик', weight: 10 },
+    { label: 'Скидка 10% на монтаж', weight: 20 },
+    { label: 'Скидка 5% на монтаж', weight: 17 },
+    { label: 'Скидка 15% на монтаж', weight: 10 }
+  ];
+  const SEG = 360 / PRIZES.length;
+  let rotation = 0;
+  let spinning = false;
+  let prizeLabel = '';
+
+  function pickPrize() {
+    const total = PRIZES.reduce((s, p) => s + p.weight, 0);
+    let r = Math.random() * total;
+    for (let i = 0; i < PRIZES.length; i++) {
+      r -= PRIZES[i].weight;
+      if (r <= 0) return i;
+    }
+    return PRIZES.length - 1;
+  }
+
+  function spin() {
+    if (spinning) return;
+    spinning = true;
+    spinBtn.disabled = true;
+    resultBox.hidden = true;
+    const idx = pickPrize();
+    const center = idx * SEG + SEG / 2;
+    rotation += 360 * 5 + (360 - center) - (rotation % 360);
+    wheel.style.transition = 'transform 4.2s cubic-bezier(.17,.67,.12,.99)';
+    wheel.style.transform = 'rotate(' + rotation + 'deg)';
+    setTimeout(() => {
+      prizeLabel = PRIZES[idx].label;
+      resultTitle.textContent = 'Ваш бонус: ' + prizeLabel;
+      resultBox.hidden = false;
+      spinBtn.disabled = false;
+      spinning = false;
+    }, 4300);
+  }
+
+  spinBtn.addEventListener('click', spin);
+  takeBtn.addEventListener('click', () => {
+    closeModal(modal);
+    openModal('modal-order', 'Бонус: ' + prizeLabel);
+  });
+  modal.querySelectorAll('[data-wheel-close]').forEach(el => {
+    el.addEventListener('click', () => closeModal(modal));
+  });
+
+  /* Показываем рулетку раз в день */
+  try {
+    const KEY = 'sp_wheel_day';
+    const today = new Date().toISOString().slice(0, 10);
+    if (localStorage.getItem(KEY) !== today) {
+      localStorage.setItem(KEY, today);
+      setTimeout(() => {
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }, 1500);
+    }
+  } catch (e) { /* localStorage недоступен — рулетка не покажется */ }
+})();

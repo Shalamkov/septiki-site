@@ -561,6 +561,29 @@ a:hover { color: var(--green-dark); }
 .lightbox figcaption { color: #fff; text-align: center; margin-top: 14px; font-size: 15px; font-weight: 600; }
 .case-card img { cursor: zoom-in; }
 
+/* ---------- Рулетка бонусов ---------- */
+.wheel-modal .modal__box { max-width: 400px; text-align: center; }
+.wheel-title { font-size: 21px; color: var(--navy); margin-bottom: 6px; }
+.wheel-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 16px; }
+.wheel-wrap { position: relative; width: 300px; max-width: 88vw; margin: 0 auto 18px; }
+.wheel { width: 100%; }
+.wheel svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 12px 26px rgba(16, 42, 67, .28)); }
+.wheel-pointer {
+  position: absolute; top: -6px; left: 50%; transform: translateX(-50%); z-index: 6;
+  width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent;
+  border-top: 28px solid var(--orange); filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .3));
+}
+.wheel-spin {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 88px; height: 88px; border-radius: 50%; border: 0; cursor: pointer; z-index: 5;
+  background: #fff; color: var(--navy); font-weight: 800; font-size: 17px; font-family: var(--font);
+  box-shadow: 0 6px 22px rgba(16, 42, 67, .3);
+}
+.wheel-spin:disabled { opacity: .75; cursor: default; }
+.wheel-result { background: var(--green-light); border: 1px solid var(--line); border-radius: 14px; padding: 16px 16px 14px; }
+.wheel-result__title { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+.wheel-result__text { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+
 /* ---------- Плавающий WhatsApp ---------- */
 .wa-float {
   position: fixed; right: 22px; bottom: 22px; z-index: 150;
