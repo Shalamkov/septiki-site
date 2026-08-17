@@ -580,11 +580,11 @@ a:hover { color: var(--green-dark); }
   box-shadow: 0 5px 16px rgba(16, 42, 67, .3);
 }
 .wheel-mascot {
-  position: absolute; left: -38px; bottom: -14px; width: 130px; z-index: 3; pointer-events: none;
+  position: absolute; left: -44px; bottom: -16px; width: 96px; z-index: 3; pointer-events: none;
 }
 .wheel-mascot img { width: 100%; display: block; filter: drop-shadow(0 12px 20px rgba(8, 22, 34, .3)); }
 @media (max-width: 440px) {
-  .wheel-mascot { width: 96px; left: -30px; bottom: -8px; }
+  .wheel-mascot { width: 84px; left: -32px; bottom: -10px; }
 }
 .wheel-spin:disabled { opacity: .75; cursor: default; }
 .wheel-result { background: var(--green-light); border: 1px solid var(--line); border-radius: 14px; padding: 16px 16px 14px; }
