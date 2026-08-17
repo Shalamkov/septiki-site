@@ -587,6 +587,19 @@ a:hover { color: var(--green-dark); }
   .wheel-mascot { width: 84px; left: -32px; bottom: -10px; }
 }
 .wheel-spin:disabled { opacity: .75; cursor: default; }
+.wheel-prizes {
+  text-align: left; margin: 0 0 16px; padding: 12px 14px;
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px;
+}
+.wheel-prizes__title { font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.wheel-prizes__list {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5px 14px;
+  margin: 0; padding: 0; list-style: none;
+}
+.wheel-prizes__list li { font-size: 12px; line-height: 1.35; color: var(--navy-soft); }
+@media (max-width: 380px) {
+  .wheel-prizes__list { grid-template-columns: 1fr; }
+}
 .wheel-result { background: var(--green-light); border: 1px solid var(--line); border-radius: 14px; padding: 16px 16px 14px; }
 .wheel-result__title { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
 .wheel-result__text { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
