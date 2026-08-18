@@ -190,6 +190,7 @@ function bindForm(form, buildPayload) {
 
 bindForm(document.getElementById('contact-form'), (f, name, phone) => ({
   name, phone,
+  address: (f.querySelector('[name="address"]') || {}).value || '',
   subject: (f.querySelector('[name="subject"]') || {}).value || ''
 }));
 
