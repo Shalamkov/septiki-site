@@ -347,15 +347,22 @@ document.querySelectorAll('[data-max-todo]').forEach(el => {
   const resultTitle = document.getElementById('wheel-result-title');
   const takeBtn = document.getElementById('wheel-take');
   const PRIZES = [
-    { label: 'Установка в подарок', weight: 5 },
-    { label: 'Скидка 10% на септик', weight: 15 },
-    { label: 'Скидка 5% на септик', weight: 12 },
-    { label: 'Скидка 15% на септик', weight: 8 },
-    { label: 'Скидка 10% на монтаж', weight: 15 },
-    { label: 'Скидка 5% на монтаж', weight: 12 },
-    { label: 'Скидка 15% на монтаж', weight: 8 },
-    { label: 'Бесплатная доставка по области', weight: 15 },
-    { label: 'Сервисное обслуживание 1 год в подарок', weight: 10 }
+    { label: 'Скидка 5% на монтаж', weight: 1 },
+    { label: 'Скидка 10% на монтаж', weight: 1 },
+    { label: 'Скидка 15% на монтаж', weight: 1 },
+    { label: 'Скидка 5% на септик', weight: 1 },
+    { label: 'Скидка 10% на септик', weight: 1 },
+    { label: 'Скидка 15% на септик', weight: 1 },
+    { label: 'ТО септика на год в подарок', weight: 1 },
+    { label: 'Бесплатная доставка по области', weight: 1 },
+    { label: 'Скидка 5% на монтаж', weight: 1 },
+    { label: 'Скидка 10% на монтаж', weight: 1 },
+    { label: 'Скидка 15% на монтаж', weight: 1 },
+    { label: 'Скидка 5% на септик', weight: 1 },
+    { label: 'Скидка 10% на септик', weight: 1 },
+    { label: 'Скидка 15% на септик', weight: 1 },
+    { label: 'ТО септика на год в подарок', weight: 1 },
+    { label: 'Бесплатная доставка по области', weight: 1 }
   ];
   const SEG = 360 / PRIZES.length;
   let rotation = 0;
