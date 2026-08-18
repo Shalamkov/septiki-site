@@ -138,66 +138,67 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') modals.forEach(m => { if (!m.hidden) closeModal(m); });
 });
 
-/* ====== ОТПРАВКА ФОРМ ЧЕРЕЗ МЕССЕНДЖЕРЫ ======
-   Канал выбирает клиент в форме: WhatsApp / Telegram / чат-бот МАКС */
-function sendRequest(channel, text) {
-  if (channel === 'telegram') {
-    if (!CONTACTS.telegram) { showToast('Укажите ваш Telegram в блоке CONTACTS (js/main.js)'); return false; }
-    window.open('https://t.me/' + CONTACTS.telegram + '?text=' + encodeURIComponent(text), '_blank');
-    showToast('Спасибо! Заявка открыта в Telegram — нажмите «Отправить»');
-    return true;
-  }
-  if (channel === 'max') {
-    if (!CONTACTS.max) { showToast('Укажите ссылку на чат-бот МАКС в блоке CONTACTS (js/main.js)'); return false; }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).catch(() => {});
-    }
-    window.open(CONTACTS.max, '_blank');
-    showToast('Текст заявки скопирован — вставьте его в чат МАКС');
-    return true;
-  }
-  window.open(waLink(text), '_blank');
-  showToast('Спасибо! Заявка открыта в WhatsApp — нажмите «Отправить»');
-  return true;
+/* ====== ОТПРАВКА ЗАЯВОК В TELEGRAM ======
+   Клиент заполняет имя и телефон и нажимает «Отправить» —
+   заявка уходит на Cloudflare Worker и приходит владельцу в Telegram. */
+const FORM_ENDPOINT = 'https://septikprofi-leads.septikprofi-leads.workers.dev/api/lead';
+
+async function sendLead(payload) {
+  const res = await fetch(FORM_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) throw new Error('send failed');
 }
 
-function bindForm(form, buildMessage) {
-  form.addEventListener('submit', e => {
+function bindForm(form, buildPayload) {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const name = (form.querySelector('[name="name"]') || {}).value || '';
     const phone = (form.querySelector('[name="phone"]') || {}).value || '';
     const agree = form.querySelector('[name="agree"]');
+    const btn = form.querySelector('[type="submit"]');
 
     if (!name.trim()) { showToast('Пожалуйста, укажите ваше имя'); return; }
     if (!/^[+\d][\d\s()\-]{6,}$/.test(phone.trim())) { showToast('Пожалуйста, укажите корректный номер телефона'); return; }
     if (agree && !agree.checked) { showToast('Необходимо согласие на обработку персональных данных'); return; }
 
-    const channel = (form.querySelector('input[name="channel"]:checked') || {}).value || 'whatsapp';
-    const msg = buildMessage(form, name.trim(), phone.trim());
-    if (!sendRequest(channel, msg)) return;
-
-    form.reset();
-    const prod = form.querySelector('[name="product"]');
-    if (prod) prod.value = '';
-    const modal = form.closest('.modal');
-    if (modal) closeModal(modal);
+    if (btn) {
+      if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Отправляем…';
+    }
+    try {
+      await sendLead(buildPayload(form, name.trim(), phone.trim()));
+      showToast('Заявка отправлена! Перезвоним в течение 15 минут');
+      form.reset();
+      const prod = form.querySelector('[name="product"]');
+      if (prod) prod.value = '';
+      const modal = form.closest('.modal');
+      if (modal) closeModal(modal);
+    } catch (err) {
+      showToast('Не удалось отправить заявку. Попробуйте ещё раз или позвоните нам');
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = btn.dataset.orig;
+      }
+    }
   });
 }
 
-bindForm(document.getElementById('contact-form'), (f, name, phone) =>
-  `Здравствуйте! Меня зовут ${name}. Телефон: ${phone}. Интересует: ${(f.querySelector('[name="subject"]') || {}).value || 'консультация'}. Обратился с сайта.`
-);
+bindForm(document.getElementById('contact-form'), (f, name, phone) => ({
+  name, phone,
+  subject: (f.querySelector('[name="subject"]') || {}).value || ''
+}));
 
 document.querySelectorAll('.modal-form').forEach(form => {
-  bindForm(form, (f, name, phone) => {
-    const product = (f.querySelector('[name="product"]') || {}).value || '';
-    const address = (f.querySelector('[name="address"]') || {}).value || '';
-    let msg = `Здравствуйте! Меня зовут ${name}. Телефон: ${phone}.`;
-    if (product) msg += ` Интересует: ${product}.`;
-    if (address) msg += ` Участок: ${address}.`;
-    msg += ' Обратился с сайта.';
-    return msg;
-  });
+  bindForm(form, (f, name, phone) => ({
+    name, phone,
+    product: (f.querySelector('[name="product"]') || {}).value || '',
+    address: (f.querySelector('[name="address"]') || {}).value || ''
+  }));
 });
 
 /* ====== ПОДБОР СЕПТИКА ====== */
