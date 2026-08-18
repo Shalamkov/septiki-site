@@ -243,19 +243,7 @@ window.addEventListener('scroll', () => {
   header.style.boxShadow = window.scrollY > 10 ? '0 6px 20px rgba(16,38,59,.08)' : 'none';
 }, { passive: true });
 
-/* ====== ПЛАШКА ЧАТ-БОТА МАКС ======
-   Кнопка всегда на месте; открывает чат, как только указана ссылка в CONTACTS.max */
-const floatMax = document.getElementById('float-max');
-if (floatMax) {
-  floatMax.addEventListener('click', e => {
-    if (CONTACTS.max) {
-      window.open(CONTACTS.max, '_blank');
-      return;
-    }
-    e.preventDefault();
-    showToast('Ссылка на чат-бот МАКС появится здесь, как только будет готова');
-  });
-}
+/* ====== ССЫЛКА ЧАТ-БОТА МАКС В КОНТАКТАХ ====== */
 document.querySelectorAll('[data-max-todo]').forEach(el => {
   el.addEventListener('click', e => {
     if (CONTACTS.max) {
