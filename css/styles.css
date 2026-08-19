@@ -424,6 +424,9 @@ a:hover { color: var(--green-dark); }
 .certificate-card h3 { font-size: 16.5px; color: var(--navy); margin-bottom: 10px; line-height: 1.4; }
 .certificate-card h3 strong { display: block; color: var(--green-dark); }
 .certificate-card p { font-size: 13.5px; color: var(--muted); }
+.certificate-card__doc { display: block; margin-top: 16px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; line-height: 0; }
+.certificate-card__doc img { width: 100%; height: auto; display: block; transition: transform .25s ease; }
+.certificate-card__doc:hover img { transform: scale(1.03); }
 
 /* ---------- FAQ ---------- */
 .faq { background: var(--bg-soft); padding: 84px 0; }
