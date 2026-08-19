@@ -814,3 +814,7 @@ a:hover { color: var(--green-dark); }
   .mascot-tip { flex-direction: column; text-align: center; }
   .drain-intro h2 { font-size: 24px; }
 }
+
+/* ===== УСЛУГИ ДРЕНАЖА (отдельная секция) ===== */
+.drain-services { padding: 70px 0; }
+.drain-services .section-subtitle { max-width: 760px; margin-left: auto; margin-right: auto; }
