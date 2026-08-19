@@ -408,6 +408,11 @@ a:hover { color: var(--green-dark); }
 .case-card img { width: 100%; height: 220px; object-fit: cover; }
 .case-card figcaption { padding: 14px 18px; font-size: 14.5px; font-weight: 600; color: var(--navy); }
 
+/* ---------- SEO-текст (регион) ---------- */
+.seo-text { padding: 70px 0; background: var(--bg-soft); }
+.seo-text p { max-width: 900px; margin: 0 auto 14px; color: var(--muted); font-size: 15px; line-height: 1.7; text-align: center; }
+.seo-text p:last-child { margin-bottom: 0; }
+
 /* ---------- Сертификаты ---------- */
 .certificates { padding: 84px 0; }
 .certificates__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
