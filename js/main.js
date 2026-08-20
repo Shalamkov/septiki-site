@@ -206,6 +206,9 @@ document.querySelectorAll('.modal-form').forEach(form => {
 const calcRun = document.getElementById('calc-run');
 const calcResults = document.getElementById('calc-results');
 
+if (!calcRun || !calcResults) {
+  /* Блок подбора отсутствует на странице (например, prices.html) — пропускаем инициализацию */
+} else {
 function renderCalc() {
   const people = parseInt(document.getElementById('calc-people').value, 10);
   const mode = document.getElementById('calc-mode').value;
@@ -236,6 +239,7 @@ function renderCalc() {
 
 calcRun.addEventListener('click', renderCalc);
 renderCalc();
+}
 
 /* ====== ТЕНЬ ШАПКИ ПРИ СКРОЛЛЕ ====== */
 const header = document.getElementById('header');
